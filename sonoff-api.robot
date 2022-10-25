@@ -23,13 +23,16 @@ Sonoff Toggle
     ${response}=    RequestsLibrary.Post Request    ${session_handler}    switch/sonoff_s20_relay/toggle    ${headers}
     Should Be Equal As Integers    ${response.status_code}    200
 
-Sonoff Get State
+Get Sonoff State
     [Documentation]    Keyword returns the current state of Sonoff switch.
     ...    Takes as an argument session handler.
     [Arguments]    ${session_handler}
     ${headers}=    Create Dictionary    Content-Type=application/json    Accept=application/json
     ${state}=    RequestsLibrary.Get Request    ${session_handler}    switch/sonoff_s20_relay    ${headers}
-    [Return]    ${state.json()["state"]}
+    ${sonoff_state}=    Set Variable If
+    ...    '${state.json()["state"]}' == 'ON'    high
+    ...    '${state.json()["state"]}' == 'OFF'    low
+    [Return]    ${sonoff_state}
 
 Sonoff API Setup
     [Documentation]    Keyword creates HTTP sesion with the requested Sonoff.
