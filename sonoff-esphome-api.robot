@@ -1,20 +1,20 @@
 *** Keywords ***
-Sonoff Esphome Power On
+Sonoff Power On
     [Documentation]    Keyword prepares and sends Post Request for turning on Sonoff.
     ${response}=    RequestsLibrary.POST On Session   SonoffCtrl    switch/sonoff_s20_relay/turn_on
     Should Be Equal As Integers    ${response.status_code}    200
 
-Sonoff Esphome Power Off
+Sonoff Power Off
     [Documentation]    Keyword prepares and sends Post Request for turning off Sonoff.
     ${response}=    RequestsLibrary.POST On Session    SonoffCtrl    switch/sonoff_s20_relay/turn_off
     Should Be Equal As Integers    ${response.status_code}    200
 
-Sonoff Esphome Toggle
+Sonoff Toggle
     [Documentation]    Keyword prepares and sends Post Request for toggling Sonoff.
     ${response}=    RequestsLibrary.POST On Session    SonoffCtrl    switch/sonoff_s20_relay/toggle
     Should Be Equal As Integers    ${response.status_code}    200
 
-Get Sonoff Esphome State
+Get Sonoff State
     [Documentation]    Keyword returns the current state of Sonoff switch.
     ${state}=    RequestsLibrary.GET On Session    SonoffCtrl    switch/sonoff_s20_relay
     ${sonoff_state}=    Set Variable If
@@ -22,7 +22,7 @@ Get Sonoff Esphome State
     ...    '${state.json()["state"]}' == 'OFF'    low
     [Return]    ${sonoff_state}
 
-Sonoff Esphome API Setup
+Sonoff API Setup
     [Documentation]    Keyword creates HTTP sesion with the requested Sonoff.
     ...    Takes as an argument the Sonoff IP.
     [Arguments]    ${sonoff_ip}
