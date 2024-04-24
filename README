@@ -4,4 +4,7 @@ Two implemeentations are present here:
 - `sonoff-api-tasmota.robot` - for devices running
   [Tasmota](https://tasmota.github.io/docs/) firmware
 - `sonoff-api-esphome.robot` - for devices running
-  [ESPHome firmware](https://esphome.io/devices/sonoff.html) 
+  [ESPHome firmware](https://esphome.io/devices/sonoff.html)
+
+The default one is `Tasmota`. Desired implementation can be set via a symlink:
+`sonoff-api-tasmota.robot`.
